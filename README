@@ -1,0 +1,32 @@
+>>> deplyment.yaml
+
+-- DOWNLOAD k3d.io and install kubectl
+k3d cluster create -p "9991:30000@loadbalancer" --agents 2
+kubectl get nodes
+kubectl apply -f deployment.yaml
+-- SEE deployment:
+kubectl get pods
+
+
+>>> service.yaml
+
+kubectl apply -f service.yaml
+-- SEE services:
+kubectl get services
+
+>>> forwardport
+
+kubectl port-forward service/nginx-service 9991:9991
+
+
+>>> build cloud image ()
+
+docker build -t IMAGENAME:v1
+docker push IMAGENAME:v1
+
+>>> voltando versao (nginx-frontend definido em deployment.yaml)
+
+kubectl rollout undo deployment nginx-frontend
+
+
+>>> Kubernets IDE (LENS)
